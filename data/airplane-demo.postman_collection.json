@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "6203efa4-bf86-48f5-9efd-9f7e6c1352e4",
+		"name": "airplane-demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add new Airplane (Could be assign to a company immediately or moved later)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"Boeing 537\",\n\"serialNumber\":\"SERIALFG2\",\n\"airCompanyId\":null,\n\"numberOfFlight\":\"315\",\n\"flightDistance\":\"3400\",\n\"fuelCapacity\":\"10707\",\n\"typeOfAirPlane\":\"Passenger\",\n\"createdAt\":\"29.02.1990\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8086/airplanes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"airplanes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add air company",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"Turkish_AirLines\",\n\"companyType\":\"AirCompany&Business\",\n\"foundedAt\":\"20.05.1933\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8086/air-companies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"air-companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add new Flight (set status to PENDING)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"airCompanyId\":\"1\",\n\"airPlaneId\":\"1\",\n\"departureCountry\":\"Amsterdam\",\n\"destinationCountry\":\"Chicago\",\n\"distance\":\"1700\",\n\"estimatedFlightTime\":\"100\",\n\"endedAt\":\"06.03.2021 21:40\",\n\"delayStartedAt\":\"06.03.2021 12:10\",\n\"startedAt\":\"07.03.2021 15:10\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8086/flights/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"flights",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Move airplanes between companies",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8086/airplanes?id=1&companyId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"airplanes"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						},
+						{
+							"key": "companyId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find all Air Company Flights by status (use company name for identification of Air Company)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8086/flights?airCompanyName=United_AirLines",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"flights"
+					],
+					"query": [
+						{
+							"key": "airCompanyName",
+							"value": "United_AirLines"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find all Flights in ACTIVE status and started more than 24 hours ago",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8086/flights/active24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"flights",
+						"active24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change flight status",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8086/flights/1?status=COMPLETED",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"flights",
+						"1"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "COMPLETED"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add new flight",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"airCompanyId\":\"2\",\n\"airPlaneId\":\"2\",\n\"departureCountry\":\"Ukraine\",\n\"destinationCountry\":\"Canada\",\n\"distance\":\"1100\",\n\"estimatedFlightTime\":\"1200\",\n\"endedAt\":\"10.03.2021 12:10\",\n\"delayStartedAt\":\"29.02.2020 12:10\",\n\"startedAt\":\"07.03.2021 12:10\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8086/flights/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"flights",
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "(optional) COMPLETED status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8086/flights/completed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"flights",
+						"completed"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
