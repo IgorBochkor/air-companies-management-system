@@ -26,11 +26,6 @@ public class InjectData {
         airCompany.setCompanyType("AirCompany");
         airCompany.setFoundedAt(LocalDate.of(1926,4,26));
         airCompanyService.add(airCompany);
-        AirCompany airCompany2 = new AirCompany();
-        airCompany2.setName("Turkish_AirLines");
-        airCompany2.setCompanyType("AirCompany&Business");
-        airCompany2.setFoundedAt(LocalDate.of(1933,5,20));
-        airCompanyService.add(airCompany2);
 
         AirPlane airPlane = new AirPlane();
         airPlane.setAirCompany(airCompany);
